@@ -1,0 +1,377 @@
+// Kevin Foster
+
+digraph codeFlowChart {
+  node [fontname=CourierNew, shape=ellipse];
+  edge [splines=polyline];
+
+
+  # R scripts....
+
+
+  # raster-related R scripts
+  subgraph rasterScripts {
+    label = "rasterScripts" ;
+    Iwahashi_Pike_R                                               [ label = "VsMap/R/Iwahashi_Pike.R"                                           ];
+    krige_R                                                       [ label = "VsMap/R/krige.R"                                                   ];
+    loadDEM_R                                                     [ label = "VsMap/R/loadDEM.R"                                                 ];
+    makeRaster_AhdiAK_noQ3_hyb09c_sigma_R                         [ label = "VsMap/R/makeRaster_AhdiAK_noQ3_hyb09c_sigma.R"                     ];
+    makeRaster_AhdiAK_noQ3_sigma_R                                [ label = "VsMap/R/makeRaster_AhdiAK_noQ3_sigma.R"                            ];
+    makeRaster_AhdiAK_sigma_R                                     [ label = "VsMap/R/makeRaster_AhdiAK_sigma.R"                                 ];
+    makeRaster_AhdiGeoCats_R                                      [ label = "VsMap/R/makeRaster_AhdiGeoCats.R"                                  ];
+    makeRaster_AhdiYongWeighted1_KRG_slopeWeighting1_R            [ label = "VsMap/R/makeRaster_AhdiYongWeighted1_KRG_slopeWeighting1.R"        ];
+    makeRaster_AhdiYongWeighted1_MVN_slopeWeighting1_R            [ label = "VsMap/R/makeRaster_AhdiYongWeighted1_MVN_slopeWeighting1.R"        ];
+    makeRaster_AhdiYongWeighted1_R                                [ label = "VsMap/R/makeRaster_AhdiYongWeighted1.R"                            ];
+    makeRaster_AhdiYongWeighted1_sigma_R                          [ label = "VsMap/R/makeRaster_AhdiYongWeighted1_sigma.R"                      ];
+    makeRaster_ice_water_DEM_hillshade_etc_R                      [ label = "VsMap/R/makeRaster_ice_water_DEM_hillshade_etc.R"                  ];
+    makeRaster_YongCA_noQ3_R                                      [ label = "VsMap/R/makeRaster_YongCA_noQ3.R"                                  ];
+    makeRaster_YongCA_noQ3_sigma_R                                [ label = "VsMap/R/makeRaster_YongCA_noQ3_sigma.R"                            ];
+    makeRaster_YongCA_sigma_R                                     [ label = "VsMap/R/makeRaster_YongCA_sigma.R"                                 ];
+    maps2_R                                                       [ label = "VsMap/R/maps2.R"                                                   ];
+    mvn_all_R                                                     [ label = "VsMap/R/mvn_all.R"                                                 ];
+    mvn_params_R                                                  [ label = "VsMap/R/mvn_params.R"                                              ];
+##    rasterizeQmap_R                                               [ label = "VsMap/R/rasterizeQmap.R"                                           ];
+##    tileSlopes_R                                                  [ label = "VsMap/R/tileSlopes.R"                                              ];
+    tileTiffs_R                                                   [ label = "VsMap/R/tileTiffs.R"                                               ];
+  }
+
+
+  # misc R scripts
+##  KaiserCull_R                                                  [ label = "VsMap/R/KaiserCull.R"                                              ];
+##  loadVs_R                                                      [ label = "VsMap/R/loadVs.R"                                                  ];
+##  modelsUpdate_R                                                [ label = "VsMap/R/modelsUpdate.R"                                            ];
+##  processQmap_R                                                 [ label = "VsMap/R/processQmap.R"                                             ];
+##  vspr_R                                                        [ label = "VsMap/R/vspr.R"                                                    ];
+##  vspr_write_R                                                  [ label = "VsMap/R/vspr_write.R"                                              ];
+  classifyThings_R                                              [ label = "VsMap/R/classifyThings.R"                                          ];
+  models_R                                                      [ label = "VsMap/R/models.R"                                                  ];
+
+
+  # Shell scripts
+## DEMprocessing_sh                                              [ label = "VsMap/sh/DEMprocessing.sh"                                          ];
+## hillshades_sh                                                 [ label = "VsMap/sh/hillshades.sh"                                             ];
+
+
+  file_geo_QMAP_Rdata                                           [ shape = "box" , label = "big_noDB/geo/QMAP_Seamless_July13K_NZGD00.Rdata" ] ;
+  file_vspr_Rdata                                               [ shape = "box" , label = "VsMap/Rdata/vspr.Rdata" ] ;
+##  file_bayesUpdatingTables                                      [ shape = "box" , label = "VsMap/Rdata/BayesUpdateTables.Rdata" ] ;
+ file_geo_Rdata                                                [ shape = "box" , label = "VsMap/Rdata/geo_*.Rdata" ] ;
+ file_variogram_Rdata                                          [ shape = "box" , label = "VsMap/Rdata/variogram_*.Rdata" ] ;
+ file_krige_Rdata                                              [ shape = "box" , label = "VsMap/Rdata/KRIGE_NZGD00_allNZ_x??y??.Rdata" ] ;
+
+
+  # orphans - use this as a placeholder for any output data generated that are no longer needed
+  # (for example, the XYZ and NC files generated by some raster shell scripts.
+#  orphaned_outputs       [ shape = "invtriangle" ] ;
+
+
+##  MANUAL_EDIT          [ label = "Manual file edit" ] ;
+
+
+  # Subgroups
+
+  # A few subgroups seem obvious - output maps ; output plots ; output other (tables, CSV, text files etc)
+
+  # output maps
+ subgraph outMaps {
+ }
+
+  subgraph model_scripts {
+    MODEL_AhdiAK_R
+    MODEL_AhdiAK_noQ3_hyb09c_R
+    MODEL_YongCA_R
+    subgraph model_scripts_bayes {
+      MODEL_YongCA_noQ3_R
+      MODEL_AhdiAK_noQ3_R
+    }
+  }
+
+##  subgraph cluster_inFiles {
+##    # input files
+##    label = "Input" ;
+##    in_topo_orig_NZMG          [ shape = "box3d" , label = "PRIMARY INPUT: NZ DEM"            ] ;
+##    in_geo_orig_QMAP           [ shape = "box3d" , label = "PRIMARY INPUT: NZ GEOLOGY (QMAP)" ] ;
+##    in_McGannHobyWotherspoon   [ shape = "box3d" , label = "VsMap/in/Vs/20160615 Chris/McGann_cptVs30data.csvi\nVsMap/in/Vs/20160623 Hoby/cantstations.ll.csv\nVsMap/in/Vs/20160623 Hoby/cantstations.vs30.csv\nVsMap/in/Vs/20171123 Liam/Characterised Vs30 Canterbury_June2017_KFed.csv" ] ;
+##    in_Kaiser                  [ shape = "box3d" , label = "VsMap/in/Vs/201703_allNZ/20170329_vs_allNZ.ll" ] ;
+##  }
+
+
+
+  # output files
+    # more than just intermediate/temporary files - these are either used for publications
+    # or for reviewing code behaviour
+##  subgraph cluster_outFile {
+##    label = "Preprocessing inspection" ;
+##    out_AhdiAKclassifications   [ shape = "component", label = "out/MODEL_AhdiAK_classifications.csv\nout/MODEL_AhdiAK_classifications.kable"                   ] ;
+##    out_bayesUpdatingTables     [ shape = "component", label = "VsMap/out/bayesUpdateSummary_NinvChiSq_DATA_*__nObsPrior???_measPrec?_minSigma?.txt"            ] ;
+##    out_duplicatePointsRemoval  [ shape = "component", label = "VsMap/out/duplicatePointsRemoval.csv" ] ;
+##    out_Vs30tables              [ shape = "component", label = "VsMap/Vs30_tables/vspr_data_*.ll\nVsMap/Vs30_tables/vspr_text_*.ll" ] ;
+##    out_tooClose                [ shape = "component", label = "VsMap/out/plots/vspr_points_too_close.png" ] ;
+##    file_Kaiser_culled          [ shape = "box" ,      label = "VsMap/in/Vs/201703_allNZ/20170817_vs_allNZ_duplicatesCulled.ll" ] ;
+##  }
+
+  # output plots
+#  subgraph outPlots {
+#    out_manyPlots               [ shape = "component", label = "VsMap/out/plots/*.png\n(Many plots)" ] ;
+#  }
+
+
+
+
+  # TIFs
+  subgraph modelTIFs {
+    file_YongCA_noQ3_tif                                          [ shape = "box" , label = "big_noDB/models/YongCA_noQ3.tif" ] ;
+    file_Yong2012_Cali_Vs30_tif                                   [ shape = "box" , label = "big_noDB/models/Yong2012_Cali_Vs30.tif" ] ;
+    file_AhdiAK_sig_tif                                           [ shape = "box" , label = "big_noDB/models/sig_NZGD00_allNZ_AhdiAK.tif" ] ;
+    file_AhdiAK_noQ3_sig_tif                                      [ shape = "box" , label = "big_noDB/models/sig_NZGD00_allNZ_AhdiAK_noQ3.tif" ] ;
+    file_AhdiAK_noQ3_hyb09c_sig_tif                               [ shape = "box" , label = "big_noDB/models/sig_NZGD00_allNZ_AhdiAK_noQ3_hyb09c.tif" ] ;
+    file_AhdiYongWeighted1_tif                                    [ shape = "box" , label = "big_noDB/models/AhdiYongWeighted1.tif" ] ;
+    file_AhdiAK_noQ3_hyb09c_tif                                   [ shape = "box" , label = "big_noDB/models/hyb_NZGD00_allNZ_AhdiAK_noQ3_hyb09c.tif" ] ;
+    file_YongCA_sig_tif                                           [ shape = "box" , label = "big_noDB/models/YongCA_sigma.tif" ] ;
+    file_any_fullsize_tif                                         [ shape = "box" , label = "Any full-size (100m resolution) model TIF:\nbig_noDB/models/*.tif" ] ;
+    file_many_resampled_tifs                                      [ shape = "box" , label = "Resampled TIFs for plotting:\nRESAMP_*.tif" ] ;
+    file_KRG                                                      [ shape = "box" , label = "big_noDB/models/KRG_Vs30_NZGD00_allNZ_AhdiYongWeighted1_v5.tif" ] ;
+    file_KRG_sigma                                                [ shape = "box" , label = "big_noDB/models/KRG_stDv_NZGD00_allNZ_AhdiYongWeighted1_v5.tif" ] ;
+    file_MVNcrp0                                                  [ shape = "box" , label = "big_noDB/models/MVN_Vs30_NZGD00_allNZ_AhdiYongWeighted1_noisyT_minDist0.0km_v3_crp0.0.tif" ] ;
+    file_MVNcrp0_sigma                                            [ shape = "box" , label = "big_noDB/models/MVN_stDv_NZGD00_allNZ_AhdiYongWeighted1_noisyT_minDist0.0km_v3_crp0.0.tif" ] ;
+    file_MVNcrp15                                                 [ shape = "box" , label = "big_noDB/models/MVN_Vs30_NZGD00_allNZ_AhdiYongWeighted1_noisyT_minDist0.0km_v3_crp1.5.tif" ] ;
+    file_MVNcrp15_sigma                                           [ shape = "box" , label = "big_noDB/models/MVN_stDv_NZGD00_allNZ_AhdiYongWeighted1_noisyT_minDist0.0km_v3_crp1.5.tif" ] ;
+    file_KRG_slopeWeighted                                        [ shape = "box" , label = " ~/big_noDB/models/AhdiYongWeighted1_KRG_slopeWeighting1_Vs30_v5.tif" ] ;
+    file_KRG_slopeWeighted_sigma                                  [ shape = "box" , label = " ~/big_noDB/models/AhdiYongWeighted1_KRG_slopeWeighting1_sigma_v5.tif" ] ;
+    file_MVN_slopeWeighted                                        [ shape = "box" , label = " ~/big_noDB/models/AhdiYongWeighted1_MVN_slopeWeighting1_Vs30.tif" ] ;
+    file_MVN_slopeWeighted_sigma                                  [ shape = "box" , label = " ~/big_noDB/models/AhdiYongWeighted1_MVN_slopeWeighting1_sigma.tif" ] ;
+  }
+  subgraph otherLargeTIFs {
+    file_DEM_Rdata                                                [ shape = "box" , label = "VsMap/Rdata/nzsi_9c_DEM.Rdata\nVsMap/Rdata/nzsi_30c_DEM.Rdata\nVsMap/Rdata/nzni_9c_DEM.Rdata\nVsMap/Rdata/nzni_30c_DEM.Rdata" ] ;
+    file_slp_Rdata                                                [ shape = "box" , label = "VsMap/Rdata/nzsi_9c_slp.Rdata\nVsMap/Rdata/nzsi_30c_slp.Rdata\nVsMap/Rdata/nzni_9c_slp.Rdata\nVsMap/Rdata/nzni_30c_slp.Rdata" ] ;
+    file_DEM_Tiff                                                 [ shape = "box" , label = "big_noDB/topo/nzsi_9c_DEM.tif\nbig_noDB/topo/VsMap/Rdata/nzsi_30c_DEM.tif\nbig_noDB/topo/VsMap/Rdata/nzni_9c_DEM.tif\nbig_noDB/topo/VsMap/Rdata/nzni_30c_DEM.tif"         ] ;
+    file_slp_Tiff                                                 [ shape = "box" , label = "big_noDB/topo/nzsi_9c_slp.tif\nbig_noDB/topo/nzsi_30c_slp.tif\nbig_noDB/topo/nzni_9c_slp.tif\nbig_noDB/topo/nzni_30c_slp.tif"         ] ;
+    file_slp_Tiff_NZGD00                                          [ shape = "box" , label = "VsMap/img/nzni_30c_slp_nnb_1s_NZGD00.tif\nVsMap/img/nzsi_30c_slp_nnb_1s_NZGD00.tif\nVsMap/img/nzni_9c_slp_nnb_1s_NZGD00.tif\nVsMap/img/nzsi_9c_slp_nnb_1s_NZGD00.tif" ] ;
+    file_DEM_fullRes                                              [ shape = "box" , label = "big_noDB/topo/DEM_all_ni.tif\nbig_noDB/topo/DEM_all_si.tif"  ] ;
+    file_terrainCats                                              [ shape = "box" , label = "big_noDB/topo/terrainCats/IwahashiPike_NZ_100m_16.tif" ] ;
+    file_water_ice                                                [ shape = "box" , label = "big_noDB/models/isOcean_NZGD00.tif\nbig_noDB/models/isWater_NZGD00.tif\nbig_noDB/models/isIce_NZGD00.tif\nbig_noDB/models/hillshadeA_NZGD00.tif" ] ;
+    file_DEM_fullRes_NZGD00                                       [ shape = "box" , label = "big_noDB/topo/DEM_all_ni_NZGD00.tif\nbig_noDB/topo/DEM_all_si_NZGD00.tif"  ] ;
+    file_DEM_fullRes_NZGD00_one                                   [ shape = "box" , label = "big_noDB/topo/DEM_all_NZGD00.tif"  ] ;
+    file_DEM_100m                                                 [ shape = "box" , label = "big_noDB/models/DEM_all_NZGD00_resampled.tif" ] ;
+    file_AhdiGeoCats_tif                                          [ shape = "box" , label = "big_noDB/models/AhdiGeoCats.tif" ] ;
+    file_geo_INDEX                                                [ shape = "box" , label = "big_noDB/models/INDEX_NZGD00_allNZ.tif" ] ;
+    file_w0                                                       [ shape = "box" , label = "big_noDB/models/slopeWeighting1_w0.tif" ] ;
+  }
+
+  subgraph tiles {
+    label = "Tiled images (temporary)" ;
+    file_slp_NZGD00_Rdata_tiles                                   [ shape = "box" , label = "VsMap/Rdata/slp_NZGD00_allNZ_x??y??.Rdata\n(11x16 = 176 files)" ] ;
+    file_krige_tifs                                               [ shape = "box" , label = "VsMap/tmp/krige_NZGD00_allNZ_x??y??_*.tif\nVsMap/tmp/resid_NZGD00_allNZ_x??y??_*.tif\nVsMap/tmp/stDev_NZGD00_allNZ_x??y??_*.tif" ] ;
+    file_geo_INDEX_tiles                                          [ shape = "box" , label = "VsMap/Rdata/INDEX_NZGD00_allNZ_x??y??.Rdata\n(11x16 = 176 files)" ] ;
+    file_tmp_mvn_crp00_tif                                        [ shape = "box" , label = "VsMap/tmp/MVkrg_NZGD00_allNZ_x??y??_*crp0.0.tif\nVsMap/tmp/MVres_NZGD00_allNZ_x??y??_*crp0.0.tif\nVsMap/tmp/MVsdv_NZGD00_allNZ_x??y??_*crp0.0.tif" ] ;
+    file_tmp_mvn_crp15_tif                                        [ shape = "box" , label = "VsMap/tmp/MVkrg_NZGD00_allNZ_x??y??_*crp1.5.tif\nVsMap/tmp/MVres_NZGD00_allNZ_x??y??_*crp1.5.tif\nVsMap/tmp/MVsdv_NZGD00_allNZ_x??y??_*crp1.5.tif" ] ;
+  }
+
+
+
+  subgraph mappingScripts {
+    MAP_allCats_R                                                 [ label = "VsMap/R/MAP_allCats.R"                                             ];
+    MAP_allElev_R                                                 [ label = "VsMap/R/MAP_allElev.R"                                             ];
+    MAP_allRats_R                                                 [ label = "VsMap/R/MAP_allRats.R"                                             ];
+    MAP_allResids_R                                               [ label = "VsMap/R/MAP_allResids.R"                                           ];
+    MAP_allSigma_R                                                [ label = "VsMap/R/MAP_allSigma.R"                                            ];
+    MAP_allSlope_R                                                [ label = "VsMap/R/MAP_allSlope.R"                                            ];
+    MAP_allVs30_R                                                 [ label = "VsMap/R/MAP_allVs30.R"                                             ];
+    MAP_hillshadeOnly_R                                           [ label = "VsMap/R/MAP_hillshadeOnly.R"                                       ];
+    MAPresampler_R                                                [ label = "VsMap/R/MAPresampler.R"                                            ];
+  }
+
+  subgraph plottingScripts {
+    analysisKF_R                                                  [ label = "VsMap/R/analysisKF.R"                                              ];
+    fitVariogram_AhdiYongWeighted1_better_R                       [ label = "VsMap/R/fitVariogram_AhdiYongWeighted1_better.R"                   ];
+    plots1_R                                                      [ label = "VsMap/R/plots1.R"                                                  ];
+    slopePlotDetail_R                                             [ label = "VsMap/R/slopePlotDetail.R"                                         ];
+  }
+
+
+
+##  in_topo_orig_NZMG    -> loadDEM_R -> { file_DEM_Rdata
+##                                         file_DEM_Tiff
+##                                         file_slp_Rdata
+##                                         file_slp_Tiff   } ;
+
+##  file_slp_Tiff        -> DEMprocessing_sh  -> {
+##                                                 file_slp_Tiff_NZGD00
+##                                                                       } ;
+
+
+##  file_slp_Tiff_NZGD00 -> tileSlopes_R -> file_slp_NZGD00_Rdata_tiles ;
+
+
+##  in_topo_orig_NZMG    -> hillshades_sh -> { 
+##                                             file_DEM_fullRes
+##                                                              } ;
+
+
+##  in_geo_orig_QMAP     -> processQmap_R -> {file_geo_QMAP_Rdata
+##                                            out_AhdiAKclassifications  } ;
+
+
+##  file_geo_QMAP_Rdata  -> rasterizeQmap_R  -> file_geo_INDEX_tiles ;
+
+
+##  file_vspr_Rdata      -> modelsUpdate_R -> { out_bayesUpdatingTables
+##                                              file_bayesUpdatingTables } ;
+
+##  file_bayesUpdatingTables -> models_R ;
+  
+##  {file_geo_QMAP_Rdata
+##   file_slp_Rdata
+##   file_DEM_Rdata
+##   loadVs_R
+##   models_R            } -> vspr_R   ->  {out_duplicatePointsRemoval
+##                                          file_vspr_Rdata            } ;
+
+
+##  file_vspr_Rdata -> vspr_write_R -> out_Vs30tables ;
+
+
+##  in_Kaiser -> KaiserCull_R -> MANUAL_EDIT -> file_Kaiser_culled ;
+##               KaiserCull_R -> out_tooClose ;
+
+
+##  {file_Kaiser_culled
+##   in_McGannHobyWotherspoon   }  -> loadVs_R ;
+
+  {file_vspr_Rdata
+   file_geo_QMAP_Rdata } -> analysisKF_R   -> out_manyPlots ;
+  
+  
+  file_vspr_Rdata      -> plots1_R -> out_manyPlots ;
+  
+  
+  file_vspr_Rdata      -> slopePlotDetail_R -> out_manyPlots ;
+  
+  
+  file_geo_INDEX -> maps2_R -> { file_geo_Rdata
+                                 orphaned_outputs
+                                 file_hyb_Rdata
+                                 file_hyb_tif
+                                } ;
+  
+  
+  file_vspr_Rdata -> fitVariogram_AhdiYongWeighted1_better_R -> { file_variogram_Rdata
+                                                                  out_manyPlots } ;
+  
+  
+  file_DEM_100m -> Iwahashi_Pike_R -> {
+                                       file_terrainCats
+                                       file_Yong2012_Cali_Vs30_tif
+                                       orphaned_outputs } ;
+  
+  
+  file_terrainCats -> makeRaster_YongCA_noQ3_R  -> file_YongCA_noQ3_tif ;
+  
+  
+  file_terrainCats      -> makeRaster_YongCA_sigma_R          -> file_YongCA_sig_tif ;
+  file_terrainCats      -> makeRaster_YongCA_noQ3_sigma_R     -> file_YongCA_noQ3_sig_tif ;
+  file_YongCA_noQ3_tif  -> makeRaster_YongCA_noQ3_sigma_R  ;
+  
+  
+  {file_geo_INDEX
+  file_geo_QMAP_Rdata
+  file_DEM_fullRes     }                 ->    makeRaster_ice_water_DEM_hillshade_etc_R ->  {file_water_ice
+                                                                                             file_DEM_100m
+                                                                                             file_DEM_fullRes_NZGD00
+                                                                                             file_DEM_fullRes_NZGD00_one } ;
+  
+  
+  
+  
+  {file_geo_QMAP_Rdata
+   file_geo_INDEX          }             ->    makeRaster_AhdiGeoCats_R          -> file_AhdiGeoCats_tif ;
+  
+  
+  file_AhdiGeoCats_tif                  ->    makeRaster_AhdiAK_sigma_R                        -> file_AhdiAK_sig_tif ;
+  file_AhdiGeoCats_tif                  ->    makeRaster_AhdiAK_noQ3_sigma_R                   -> file_AhdiAK_noQ3_sig_tif ;
+  file_AhdiGeoCats_tif                  ->    makeRaster_AhdiAK_noQ3_hyb09c_sigma_R            -> file_AhdiAK_noQ3_hyb09c_sig_tif ;
+  
+  
+  file_YongCA_noQ3_tif                  ->    makeRaster_AhdiYongWeighted1_R                   -> file_AhdiYongWeighted1_tif ;
+  file_AhdiAK_noQ3_hyb09c_tif           ->    makeRaster_AhdiYongWeighted1_R        ;
+  
+  
+  {file_YongCA_noQ3_sig_tif
+   file_AhdiAK_noQ3_hyb09c_sig_tif
+   file_AhdiYongWeighted1_tif
+   file_YongCA_noQ3_tif
+   file_AhdiAK_noQ3_hyb09c_tif        }   ->    makeRaster_AhdiYongWeighted1_sigma_R       -> file_AhdiYongWeighted1_sig_tif ;
+  
+  file_any_fullsize_tif                 ->    MAPresampler_R         ->   file_many_resampled_tifs -> { # mappingScripts
+                                                                                                      MAP_allCats_R
+                                                                                                      MAP_allElev_R
+                                                                                                      MAP_allRats_R
+                                                                                                      MAP_allResids_R
+                                                                                                      MAP_allSigma_R
+                                                                                                      MAP_allSlope_R
+                                                                                                      MAP_allVs30_R
+                                                                                                      MAP_hillshadeOnly_R
+                                                                                                      MAPresampler_R        } ;
+  
+  
+  {file_variogram_Rdata
+   _tiles
+   file_geo_INDEX
+   file_AhdiYongWeighted1_tif
+                                     }  -> krige_R -> { file_krige_Rdata
+                                                        file_krige_tifs
+                                                        orphaned_outputs } ;
+  
+  
+  {mvn_params_R
+   file_variogram_Rdata
+   file_vspr_Rdata
+   file_AhdiYongWeighted1_tif
+   file_AhdiYongWeighted1_sig_tif
+                                     }  -> mvn_all_R ->  {
+                                                          file_tmp_mvn_crp00_tif
+                                                          file_tmp_mvn_crp15_tif
+                                                         } ;
+  
+  {
+   file_AhdiYongWeighted1_tif
+   file_AhdiYongWeighted1_sig_tif
+   file_KRG
+   file_w0
+                                     } -> makeRaster_AhdiYongWeighted1_KRG_slopeWeighting1_R -> {
+                                                                                                 file_KRG_slopeWeighted
+                                                                                                 file_KRG_slopeWeighted_sigma
+                                                                                                 file_w0
+                                                                                                 }
+  
+  {
+   file_AhdiYongWeighted1_tif
+   file_AhdiYongWeighted1_sig_tif
+   file_MVNcrp0
+   file_MVNcrp0_sigma
+   file_w0
+                                     } -> makeRaster_AhdiYongWeighted1_MVN_slopeWeighting1_R -> {
+                                                                                                 file_MVN_slopeWeighted
+                                                                                                 file_MVN_slopeWeighted_sigma
+                                                                                                 file_w0
+                                                                                                 }
+  
+  
+  
+  {
+   file_slp_NZGD00_Rdata_tiles
+   file_krige_tifs
+   file_geo_INDEX_tiles
+   file_tmp_mvn_crp00_tif
+   file_tmp_mvn_crp15_tif
+                                       } -> tileTiffs_R -> {
+                                                             file_slp_Tiff_NZGD00
+                                                             file_KRG
+                                                             file_KRG_sigma
+                                                             file_geo_INDEX
+                                                                                                   }
+
+
+}
+
+
+

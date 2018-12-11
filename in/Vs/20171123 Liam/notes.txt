@@ -1,0 +1,17 @@
+1. Characterised Vs30 Canterbury_June2017.csv          File received from Liam - needed to reformat for consistency
+2. Characterised Vs30 Canterbury_June2017_KFed.xlsx    Reformatted for consistency
+3. Characterised Vs30 Canterbury_June2017_KFed.csv     Written from LibreOffice to CSV using tab delimeters. USE THIS FILE FOR READING INTO R.
+4. Characterised Vs30 Canterbury_June2017.xlsx         Pretty print - for manual checks
+5. col.sh                                              Script for generating pretty print - calls column
+6. info.odt                                            From Slack when Liam posted
+
+
+Liam,
+
+Tying together the sources section, first things last. In the XLSX file you provided last year compiling Canterbury Vs30 measurements from various sources,
+I am having trouble finding these three. Are they published/available?
+ 
+Cox et al. (2011) University of Arkansas Preliminary Data Report for: Surface Wave Testing in Christchurch, New Zealand Affected by the New Zealand Earthquakes
+Cox et al. (2016). Deep Vs Profiling in Christchurch
+Wotherspoon et al. (2016). Dynamic Site Characterisation of Canterbury Strong Motion Stations using Active and Passive Surface Wave Testing, EQC Report 2016 AND Deschenes et al. (2017)
+

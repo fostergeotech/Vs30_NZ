@@ -1,0 +1,6 @@
+http://info.geonet.org.nz/display/appdata/The+New+Zealand+Strong-Motion+Database
+
+Kaiser, A.; Van Houtte, C.; Perrin, N.; Wotherspoon, L.; McVerry, G. (2017). "Site characterisation of GeoNet stations for the New Zealand strong motion database". Bulletin of the New Zealand Society for Earthquake Engineering, in press.
+
+Station locations from https://github.com/GeoNet/delta/blob/master/network/stations.csv
+
