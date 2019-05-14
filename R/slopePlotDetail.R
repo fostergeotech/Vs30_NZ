@@ -8,7 +8,7 @@ rm(list = ls())
 setwd("~/VsMap/")
 
 pubFigs <- "yes" # mark true for publication; false for more info per plot.
-# pubFigs <- "no" # mark true for publication; false for more info per plot.
+pubFigs <- "no" # mark true for publication; false for more info per plot.
 
 
 
@@ -218,7 +218,11 @@ for(showDenStrips in c(F)) { ###################################################
                        no  = paste0("log10(",slp," slope)"),
                        yes = "slope")) +
                 scale_x_continuous(breaks = log10slopeSeq, minor_breaks = c(), labels = log10slopeLabs,limits = log10slopeLims) +
-                theme_linedraw()
+                theme_linedraw() +
+                theme(
+                      panel.grid.major.y = element_line(color="gray60", size=0.3),
+                      panel.grid.minor.y = element_line(color="gray75", size=0.15)
+                      )
 
 
       if(dim(vsprdf1)[1] > 0) {
@@ -278,8 +282,8 @@ for(showDenStrips in c(F)) { ###################################################
                                       logSlopeMax  = xmx,
                                       Vs30min      = Vs30mn[1],
                                       Vs30max      = Vs30mn[2],
-                                      sigma_uncond = stDvPrior,
-                                      sigma_fSlope = stDvPosterior,
+                                      sigma_uncond = stDvPrior,     # 2019 pre-publication note. This is NOT the model sigma, but the standard deviation of the (log) Vs30 values. I'm changing the values shown in Table 3 of my Earthquake Spectra publication to reflect this. (I made a mistake before, but only in reporting in the publication---not in the modeling).
+                                      sigma_fSlope = stDvPosterior, # 2019 pre-publication note. This is NOT the slope-modified model sigma, but the standard deviation of the  log(Vs30) values subtracted from their linear trend. I'm changing the values shown in Table 3 of my Earthquake Spectra publication to reflect this. (I made a mistake before, but only in reporting in the publication---not in the modeling).
                                       reduc_coeff  = stDvPosterior/stDvPrior)
         
         slopeTable <- rbind(slopeTable, slopeTableRowDF)  

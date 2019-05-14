@@ -286,10 +286,10 @@ for(region in c("NZ","CH")) {
                   22
                   )
     #cexVec <- c(rep(SMALL,5),MED)
-    cexVec <- c(rep(SMALL,3),MED)
+    cexVec <- c(SMALL,rep(MED,3))
     points(x = coordinates(vsprS[["McGann"]]),       bg="white", cex = SMALL, pch=21)
-    points(x = coordinates(vsprS[["Wotherspoon"]]),  bg="cyan",  cex = SMALL, pch=21)
-    points(x = coordinates(vsprS[["KaiserQ2"]]),  bg="blue", cex = SMALL, pch=22)
+    points(x = coordinates(vsprS[["Wotherspoon"]]),  bg="cyan",  cex = MED, pch=21)
+    points(x = coordinates(vsprS[["KaiserQ2"]]),  bg="blue", cex = MED, pch=22)
     points(x = coordinates(vsprS[["KaiserQ1"]]),  bg="yellow", cex = MED, pch=22)
     legend(x=switch(region,CH="bottomright",NZ="topleft"),
            legend = legendVec,
