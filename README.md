@@ -2,11 +2,15 @@
 
 Kevin Foster
 
-VERSION 18.12  -  Published version (Earthquake Spectra - submitted 12/2018)
+VERSION 18.12  -  Published version ([Earthquake Spectra](https://earthquakespectra.org/doi/full/10.1193/121118EQS281M))
 
-All codes have hardcoded working directory information. Other users will need to edit working directory strings accordingly. Unless indicated otherwise (in a few scripts), ~/VsMap/ is the working directory.
+*If you want to USE this work,* you can download the publication and electronic supplements (including the model itself as GeoTIF format raster files) [at my website](https://fostergeotech.com/Vs30map) (or in the electronic supplements for the official publication linked above, but you may not have subscription access).
 
-This codebase is not a "one-click" operation but interested users should be able to make use of most/parts of it. Please contact me with questions.
+*If you want to INSPECT my work, or adapt pieces of it for your own projects,* that's what this repo is for. Note that the necessary input files (Geology map and digital elevation models for New Zealand) are too large to host here, and in any case it will take you a fair bit of time and effort to get my code running on your system.
+
+All codes have hardcoded working directory information. Other users will need to edit working directory strings accordingly. Unless indicated otherwise (in a few scripts), `~/VsMap/` is the working directory.
+
+This codebase is not a "one-click" operation but interested users should be able to make use of most/parts of it with some persistence. Please contact me with questions.
 
 ## Organization
 
