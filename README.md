@@ -4,7 +4,7 @@ Kevin Foster
 
 VERSION 18.12  -  Published version ([Earthquake Spectra](https://earthquakespectra.org/doi/full/10.1193/121118EQS281M))
 
-*If you want to USE this work,* you can download the publication and electronic supplements (including the model itself as GeoTIF format raster files) [at my website](https://fostergeotech.com/Vs30map) (or in the electronic supplements for the official publication linked above, but you may not have subscription access).
+*If you want to USE this work,* you can download the publication and electronic supplements, including the model itself as GeoTIF format raster files, [at my website](https://fostergeotech.com/Vs30map). (You can also get it from the official publication linked above, but you may not have subscription access).
 
 *If you want to INSPECT my work, or adapt pieces of it for your own projects,* that's what this repo is for. Note that the necessary input files (Geology map and digital elevation models for New Zealand) are too large to host here, and in any case it will take you a fair bit of time and effort to get my code running on your system.
 
